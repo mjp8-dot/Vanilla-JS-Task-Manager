@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>To Do List</h1>
+    </header>
+    <div class="list">
+        <h2>Tasks</h2>
+
+    </div>
+
+    <div class="buttons">
+        <button>Add Task</button>
+    </div>
+
+    <div class="fill-box">
+
+    </div>
+
+    <div class="completed">
+        <h2>Completed Tasks</h2>
+    </div>
+
+    <script>
+        const addtsk = document.querySelector(".buttons button:first-child");
+        const fillbox = document.querySelector(".fill-box");
+        const completed = document.querySelector(".completed");
+        
+
+        addtsk.addEventListener("click", function() {
+            if (fillbox.innerHTML !== "") {
+                fillbox.innerHTML = "";
+            }
+            const task = document.createElement("div");
+            task.classList.add("task");
+
+            const heading = document.createElement("h3");
+            heading.classList.add("task-heading");
+            heading.innerHTML = "Add Task";
+            fillbox.appendChild(heading);
+
+            task.innerHTML = `<input type="text" placeholder="Enter task" class = "text-input"> `;
+            fillbox.appendChild(task);
+
+            task.innerHTML += `<input type="date" class = "date-input"> `;
+            const submitbtn = document.createElement("button");
+
+            task.innerHTML += `<input type = "time" placeholder = "time" class ="time-input">`;
+
+            task.innerHTML += `<button class = "submit-btn">Submit</button>`;
+
+            const submit = task.querySelector(".submit-btn");
+            submit.addEventListener("click", function() {
+                const taskName = task.querySelector(".text-input").value;
+                const taskDate = task.querySelector(".date-input").value;
+                const taskTime = task.querySelector(".time-input").value;
+
+                if (taskName && taskDate && taskTime) {
+                    const newTask = document.createElement("div");
+                    newTask.classList.add("task-item");
+                    newTask.innerHTML = `<div class="task-info">
+                                            <h3>${taskName}</h3>
+                                            <p>${taskDate} ${taskTime}</p>
+                                        </div>
+                                        
+                                        <div class="task-actions">
+                                            <button class="complete-btn">✅</button>
+                                            <button class="edit-btn">✏️</button>
+                                            <button class="delete-btn">❌</button>
+                                        </div>`;
+                    document.querySelector(".list").appendChild(newTask);
+                    fillbox.innerHTML = "";
+
+                    const done = newTask.querySelector(".complete-btn");
+                    done.addEventListener("click", function() {
+                            if (confirm("Are you sure you want to mark this task as complete?")) {
+                                const actions = newTask.querySelector(".task-actions");
+                                actions.remove();
+                                completed.appendChild(newTask);
+                            }
+                    });
+
+                    const edit = newTask.querySelector(".edit-btn");
+                    edit.addEventListener("click", function() {
+                        if (fillbox.innerHTML !== "") {
+                            fillbox.innerHTML = "";
+                        }
+
+                        const edit = document.createElement("div")
+                        edit.classList.add("task");
+                        
+                        const editheading = document.createElement("h3");
+                        editheading.classList.add("task-heading");
+                        editheading.innerHTML = "Edit Task";
+                        fillbox.appendChild(editheading);
+
+                        edit.innerHTML += `<input type="text" placeholder="Enter task" class = "text-input">
+                                        <input type="date" class = "date-input">
+                                        <input type = "time" placeholder = "time" class ="time-input">
+                                        <button class = "submit-btn">Update</button>`;
+                        fillbox.appendChild(edit);
+
+                        const update = edit.querySelector(".submit-btn");
+                        update.addEventListener("click", function() {
+                            const updatedTaskName = edit.querySelector(".text-input").value;
+                            const updatedTaskDate = edit.querySelector(".date-input").value;
+                            const updatedTaskTime = edit.querySelector(".time-input").value;
+
+                            if (updatedTaskName && updatedTaskDate && updatedTaskTime) {
+                                newTask.querySelector(".task-info h3").textContent = updatedTaskName;
+                                newTask.querySelector(".task-info p").textContent = `${updatedTaskDate} ${updatedTaskTime}`;
+                                fillbox.innerHTML = "";
+                            } else {
+                                alert("Please fill in all fields.");
+                            }
+
+                        });
+                    });
+                const del = newTask.querySelector(".delete-btn");
+                    del.addEventListener("click", function() {
+                        if (confirm("Are you sure you want to delete this task?")) {
+                            newTask.remove();
+                        }
+                        })
+
+
+                } else {
+                    alert("Please fill in all fields.");
+                }
+            });
+
+        })
+
+    </script>
+    
+
+    
+</body>
+</html>

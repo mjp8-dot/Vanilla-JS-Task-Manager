@@ -1,0 +1,191 @@
+body{
+    background-color: darkslateblue;
+    display: grid;
+    grid-template-areas: 
+    "header header"
+    "list buttons"
+    "list fill-box"
+    "list completed"
+    ;
+    min-height: 100vh;
+
+    grid-template-columns: 40% 1fr;
+    grid-template-rows: 20% 15% 30% 25%  ;
+    gap : 20px;
+}
+
+header{
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding : 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.list{
+    grid-area: list;
+    border: none;
+    border-radius: 20px;
+    padding : 20px;
+    gap : 20px;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow-y: scroll;
+}
+
+.task-item{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding : 10px;
+    margin-bottom: 10px;
+    
+}
+
+.task-actions{
+    display: none;
+   
+
+}
+
+.task-item:hover{
+    background-color: black;
+    color: white;
+    transform: scale(1.01);
+    translate: 0px -10px;
+    
+    transition: all 0.2s ease-in-out;
+
+}
+
+.task-item:hover .task-actions{
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.complete-btn, .edit-btn, .delete-btn{
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.complete-btn:hover, .edit-btn:hover, .delete-btn:hover{
+    background-color: wheat;
+    color: black;
+    transition: all 0.3s ease-in-out;
+}
+
+.buttons{
+    grid-area : buttons;
+    display : grid;
+    grid-template-columns: 1fr;
+    gap : 10px;
+    border : none;
+    border-radius: 20px;
+    padding : 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    min-height: auto;
+}
+
+.fill-box{
+    grid-area : fill-box;
+    display: flex;
+    flex-direction: column;
+    border : none;
+    border-radius: 20px;
+    padding : 20px;
+    gap : 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.task{
+    padding : 10px;
+    display: flex;
+    justify-content: space-between;
+    gap : 20px;
+}
+
+.text-input{
+    height: 50px;
+    width: 75%;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    padding : 10px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+}
+
+.text-input:focus{
+    translate: 0px -5px;
+    outline: none;
+}
+
+.date-input{
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    padding : 10px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+.date-input:focus{
+    translate: 0px -5px;
+    outline: none;
+}
+
+.time-input{
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    padding : 10px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    
+}
+
+.time-input:focus{
+    translate: 0px -5px;
+    outline: none;
+}
+
+
+button{
+    height: 70px;
+    width: auto;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+button:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.completed{
+    grid-area: completed;
+    border: none;
+    border-radius: 20px;
+    padding : 20px;
+    gap : 20px;
+
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow-y: scroll;
+}
+
